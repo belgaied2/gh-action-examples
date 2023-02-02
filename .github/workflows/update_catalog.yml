@@ -38,7 +38,7 @@ jobs:
     - run: |
         rm image-metadata.json
         mv image-metadata-2.json image-metadata.json
-        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+        git config --global user.name "Mohamed Belgaied Hassine"
         git config --global user.email "belgaied2@hotmail.com"
         git add image-metadata.json
         git commit -m "Updating image-metadata.json"
