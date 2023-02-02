@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        name: belgaied2/update-harvester-image-catalog 
+        repository: belgaied2/update-harvester-image-catalog 
     - uses: actions/setup-python@v4
       with:
         python-version: "3.8.12" 
