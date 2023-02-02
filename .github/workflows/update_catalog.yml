@@ -26,6 +26,7 @@ jobs:
         path: image-metadata.json
   put_file_harvester:
     runs-on: ubuntu-latest
+    needs: get_python_script
     steps:
     - uses: actions/checkout@v3
       with:
