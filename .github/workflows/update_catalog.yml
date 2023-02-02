@@ -28,18 +28,25 @@ jobs:
     runs-on: ubuntu-latest
     needs: get_python_script
     steps:
-    - uses: actions/checkout@v3
+    - name: Clone repo harvester-cli 
+      uses: actions/checkout@v3
       with:
         repository: belgaied2/harvester-cli 
-    - uses: actions/download-artifact@v3
+    - name: Download image-metadata.json from previous Job
+      uses: actions/download-artifact@v3
       with:
         name: image-metadata.json
         path: image-metadata-2.json 
-    - run: |
+    - name: Commit changed metadata file
+      run: |
         rm image-metadata.json
         mv image-metadata-2.json image-metadata.json
         git config --global user.name "Mohamed Belgaied Hassine"
         git config --global user.email "belgaied2@hotmail.com"
         git add image-metadata.json
         git commit -m "Updating image-metadata.json"
-        git push
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
