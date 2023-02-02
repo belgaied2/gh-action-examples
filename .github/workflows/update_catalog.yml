@@ -20,6 +20,10 @@ jobs:
         cache: "pip"
     - run: pip install -r requirements.txt
     - run: python get_image_list.py 
+    - uses: actions/upload-artifact@v3
+      with: 
+        name: image-metadata.json
+        path: image-metadat.json
 
     
     
