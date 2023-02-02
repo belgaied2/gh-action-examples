@@ -34,8 +34,10 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: image-metadata.json
-        path: image-metadata.json 
+        path: image-metadata-2.json 
     - run: |
+        rm image-metadata.json
+        mv image-metadata-2.json image-metadata.json
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "gh-update-metadata@github.com"
         git add image-metadata.json
