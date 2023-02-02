@@ -24,6 +24,19 @@ jobs:
       with: 
         name: image-metadata.json
         path: image-metadata.json
-
-    
-    
+  put_file_harvester:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: belgaied2/harvester-cli 
+    - uses: actions/download-artifact@v3
+      with:
+        name: image-metadata.json
+        path: image-metadata.json 
+    - run: |
+        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+        git config --global user.email "gh-update-metadata@github.com"
+        git add image-metadata.json
+        git commit -m "Updating image-metadata.json"
+        git push
