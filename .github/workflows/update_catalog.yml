@@ -16,7 +16,7 @@ jobs:
         name: belgaied2/update-harvester-image-catalog 
     - uses: actions/setup-python@v4
       with:
-        python-version: "3.8.10" 
+        python-version: "3.8.12" 
         cache: "pip"
     - run: python get_image_list.py 
 
