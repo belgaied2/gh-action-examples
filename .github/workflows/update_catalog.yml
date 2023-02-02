@@ -45,6 +45,7 @@ jobs:
         git config --global user.email "belgaied2@hotmail.com"
         git add image-metadata.json
         git commit -m "Updating image-metadata.json"
+        echo $TOKEN
         git push https://belgaied2:${TOKEN}@github.com/belgaied2/harvester-cli HEAD
       env:
         TOKEN: ${{ env.TOKEN }}
