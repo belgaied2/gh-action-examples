@@ -37,7 +37,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: image-metadata.json
-        path: output/image-metadata.json 
+        path: output
     - name: push to other repo
       uses: cpina/github-action-push-to-another-repository@main
       env:
