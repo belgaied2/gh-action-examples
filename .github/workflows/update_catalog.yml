@@ -20,6 +20,7 @@ jobs:
         cache: "pip"
     - run: pip install -r requirements.txt
     - run: python get_image_list.py 
+    - run: mkdir output
     - uses: actions/upload-artifact@v3
       with: 
         name: image-metadata.json
@@ -36,15 +37,14 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: image-metadata.json
-        path: image-metadata-2.json 
-    - name: Commit changed metadata file
-      run: |
-        rm image-metadata.json
-        mv image-metadata-2.json image-metadata.json
-        git config --global user.name "Mohamed Belgaied Hassine"
-        git config --global user.email "belgaied2@hotmail.com"
-        git add image-metadata.json
-        git commit -m "Updating image-metadata.json"
-        git push https://belgaied2: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@github.com/belgaied2/harvester-cli HEAD
+        path: output/image-metadata.json 
+    - name: push to other repo
+      uses: cpina/github-action-push-to-another-repository@main
       env:
-        TOKEN: ${{ env.TOKEN }}
+        SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+      with:
+        source-directory: output/
+        destination-github-username: 'belgaied2'
+        destination-repository-name: 'harvester-cli'
+        user-email: belgaied2@hotmail.com
+        target-branch: main
