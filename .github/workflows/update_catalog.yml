@@ -47,4 +47,4 @@ jobs:
         destination-github-username: 'belgaied2'
         destination-repository-name: 'harvester-cli'
         user-email: belgaied2@hotmail.com
-        target-branch: images
+        target-branch: feature-image-upload
